@@ -1,0 +1,146 @@
+---
+import Image from '../../node_modules/astro/components/Image.astro';
+import Front from '../images/Front.png?metadata';
+import Interior from '../images/Interior.png?metadata';
+import LateralFront from '../images/LateralFront.png?metadata';
+import Left from '../images/Left.png?metadata';
+import textCustom from '../images/text-custom.png?metadata';
+---
+
+<script>
+  const slider = document.getElementById("slider");
+        let slideIndex = 0;
+        const totalSlides = slider.children.length;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+            slideIndex++;
+            if (slideIndex >= totalSlides) slideIndex = 0;
+        }
+
+        setInterval(updateSlider, 3000);
+// const next:HTMLElement = document.querySelector(".next");
+// const prev:HTMLElement = document.querySelector(".previous");
+
+// const numImg = 5;
+// let currImg = 1;
+
+// let timeoutID:number;
+
+// next.addEventListener("click", () => {
+//   currImg++;
+//   clearTimeout(timeoutID);
+//   updateImage();
+// });
+
+// prev.addEventListener("click", () => {
+//   currImg--;
+//   clearTimeout(timeoutID);
+
+//   updateImage();
+// });
+
+// const imgcontainer:HTMLElement = document.querySelector("#img-container");
+
+// function updateImage() {
+//   // Check if media query matches
+//   const isSmallScreen = window.matchMedia("(max-width: 480px)").matches;
+//   let translationAmount = 650; // default amount for larger screens
+//   if (isSmallScreen) {
+//     translationAmount = 300; // adjust for smaller screens
+//   }
+//   if (currImg > numImg) {
+//     currImg = 1;
+//   } else if (currImg < 1) {
+//     currImg = numImg;
+//   }
+//   imgcontainer.style.transform = `translateX(-${(currImg - 1) * translationAmount}px)`;
+
+//   timeoutID = setTimeout(() => {
+//     currImg++;
+//     updateImage();
+//   }, 3000);
+// }
+
+// updateImage();
+</script>
+
+<section id="carousel" class="flex flex-col md:flex-row md:h-[80vh] content-center items-center bg-[wheat]">
+  <div class="my-2">
+    <img src="/black_logo_transparent_background.png" class="w-[400px] md:w-[500px]" alt="Logo de Pabellon Olivos">
+  </div>
+  <div class="relative w-full max-w-[50rem] mx-auto overflow-hidden rounded-[1em] shadow-lg h-64 sm:h-80 md:h-[25rem] lg:h-120">
+    <div id="slider" class="absolute flex transition-transform duration-500">
+        <img src={Front} alt="Image 1" class="w-full h-full object-cover">
+        <img src={Interior} alt="Image 2" class="w-full h-full object-cover">
+        <img src={LateralFront} alt="Image 3" class="w-full h-full object-cover">
+        <!-- Add more images if needed -->
+    </div>
+  </div>  
+  <!-- <div id="slider" class="my-5 flex flex-row items-center overflow-hidden rounded-[1em] w-[300px] md:w-[650px]">
+    <i class="fa-solid fa-angles-left fa-2x previous"></i>
+    <div id="img-container" class="w-[300px] md:w-[650px]">
+      <img src={Front} class="w-[300px] md:w-[650px]" alt="">
+      <img src={Interior} class="w-[300px] md:w-[650px]" alt="">
+      <img src={LateralFront} class="w-[300px] md:w-[650px]" alt="">
+      <img src={Left} class="w-[300px] md:w-[650px]" alt="">
+      <img src={textCustom} class="w-[300px] md:w-[650px]" alt="">
+    </div>
+    <i class="fa-solid fa-angles-right fa-2x next"></i>
+  </div> -->
+</section>
+
+<style>
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+} */
+
+/* #carousel {
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  background-color: wheat;
+} */
+/* 
+#slider {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 1em;
+  width: 800px;
+  height: 475px;
+  box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.5);
+      -webkit-tap-highlight-color: transparent;
+} */
+
+#img-container {
+  display: flex;
+  transition: transform 300ms ease-in-out;
+}
+
+.fa-solid {
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  opacity: 0.75;
+  transition: opacity 100ms ease-in-out;
+  z-index: 100;
+}
+
+.fa-solid:hover {
+  opacity: 1;
+}
+
+.previous {
+  left: 4.5rem;
+}
+
+.next {
+  right: 4.5rem;
+}
+</style>

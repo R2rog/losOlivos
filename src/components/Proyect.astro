@@ -1,0 +1,43 @@
+---
+import blackText from '../images/text_black.png?metadata';
+---
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let lazyVideos = [].slice.call(document.querySelectorAll("video[loading='lazy']"));
+  if ("IntersectionObserver" in window) {
+    let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(video) {
+        if (video.isIntersecting) {
+          for (let source in video.target.children) {
+            let videoSource = video.target.children[source];
+            if (videoSource.tagName === "SOURCE") {
+              videoSource.src = videoSource.dataset.src;
+            }
+          }
+          video.target.load();
+          video.target.removeAttribute("loading");
+          lazyVideoObserver.unobserve(video.target);
+        }
+      });
+    });
+    lazyVideos.forEach(function(lazyVideo) {
+      lazyVideoObserver.observe(lazyVideo);
+    });
+  }
+});
+</script>
+<section class="my-10 bg-yellow-50 md:h-[90vh] flex flex-col content-center items-center">
+    <img src={blackText} alt="">
+    <div class="flex flex-col md:flex-row items-center">
+        <div id="video" class="mx-20 w-full md:w-7/12">
+            <video width="640px" height="360px" controls preload="none" loading="lazy">
+                <source data-src="../video/render.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div id="explanation" class=" mx-20 w-full md:w-5/12 ">
+            <h1 class="text-black font-bold text-4xl my-4">El Proyecto</h1>
+            <p class="text-black text-base">Ubicado sobre la principal salida de Pachuca, Pabellón Olivos emerge como un punto de encuentro vanguardista para negocios y familias. Diseñado con una arquitectura moderna y rodeado de un ambiente vibrante, esta plaza comercial promete ser el nuevo epicentro de moda, gastronomía y entretenimiento en la ciudad. Para los emprendedores y marcas consolidadas, Pabellón Olivos ofrece una oportunidad única para crecer y conectarse con una audiencia dinámica y en constante evolución. Sus espacios, pensados meticulosamente, brindan la flexibilidad que todo negocio desea, apoyado por facilidades de vanguardia y un flujo constante de visitantes ansiosos por descubrir y disfrutar. Únete a nosotros y forma parte de la próxima revolución comercial en la ciudad.</p>
+        </div>
+    </div>
+</section>

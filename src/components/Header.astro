@@ -1,0 +1,97 @@
+<!--Navbar-->
+<nav class="relative-container mx-auto p-2">
+    <div class="flex items-center justify-between bg-yellow-50">
+        <!--Logo-->
+        <div class="pt-2">
+            <img src="/black_logo_transparent_background.png" class="h-20" alt="logo">
+        </div>
+        <!--menu items-->
+        <div class="hidden md:flex space-x-6">
+            <a href="#" class="text-black font-bold text-xl hover:text-green-500">Proyecto</a>
+            <a href="#" class="ttext-black font-bold text-xl hover:text-green-500">Ubicación</a>
+            <a href="#" class="ttext-black font-bold text-xl hover:text-green-500">Contacto</a>
+            <a href="#" class="ttext-black font-bold text-xl hover:text-green-500">Tel: 7713841470</a>
+            <a href="#" class="ttext-black font-bold text-xl hover:text-green-500">contacto@pabellonolivos.com</a>
+        </div>
+        <!--Icon-->
+        <button id="menu-btn" class="open block hamburger md:hidden focus:outline-none">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+        </button>
+    </div>
+    <!--Mobile menu-->
+    <div class="md:hidden">
+        <div id="menu" class="absolute flex-col items-center self-end hidden py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+            <a href="#" class="text-black hover:text-green-500">Proyecto</a>
+            <a href="#"class="text-black hover:text-green-500">Ubicación</a>
+            <a href="#"class="text-black hover:text-green-500">Contacto</a>
+            <a href="#"class="text-black hover:text-green-500">Tel: 7717120688</a>
+            <a href="#"class="text-black hover:text-green-500">contacto@pabellonolivos.com</a>
+        </div>
+    </div>
+</nav>
+
+<script>
+const btn = document.getElementById('menu-btn')
+const nav = document.getElementById('menu')
+
+btn.addEventListener('click', ()=>{
+    btn.classList.toggle('open');
+    nav.classList.toggle('flex');
+    nav.classList.toggle('hidden');
+})
+</script>
+
+<style>
+.hamburger{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+}
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background-color: black;
+    font-weight: bold;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+.hamburger-middle{
+    transform: translateY(7px);
+}
+.hamburger-bottom{
+    transform: translateY(14px);
+}
+
+.open{
+    transform: rotate(90deg);
+    transform: translateY(0px);
+}
+.open .hamburger-top{
+    transform: rotate(45deg) translateY(6px) translate(6px);
+}
+.open .hamburger-middle{
+    display: none;
+}
+.open .hamburger-bottom{
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
+}
+@media(max-width:576px){
+    body{
+        background-position: 50px -50px;
+        background-size: 500px;
+    }
+    #cta{
+        background-image: url(/img/bg-simplify-section-mobile.svg);
+
+    }
+}
+</style>
